@@ -20,6 +20,26 @@ st.set_page_config(
 st.title("Enterprise AI Document Intelligence")
 st.caption("Interactive RAG Demo | Python • Streamlit • OpenAI")
 
+
+import hmac
+
+st.subheader("Demo Access")
+
+try:
+    demo_password = st.secrets["DEMO_PASSWORD"]
+except (KeyError, FileNotFoundError):
+    st.error("Demo access password is not configured.")
+    st.stop()
+
+entered_password = st.text_input(
+    "Enter demo access code",
+    type="password"
+)
+
+if not hmac.compare_digest(entered_password, demo_password):
+    st.info("Enter the access code to use the AI demo.")
+    st.stop()
+
 st.info(
     "This public demo uses a sample PDF. "
     "Document uploads are disabled."
@@ -32,11 +52,10 @@ if "question_count" not in st.session_state:
 
 api_key = os.getenv("OPENAI_API_KEY")
 
-if not api_key:
-    try:
-        api_key = st.secrets["OPENAI_API_KEY"]
-    except (KeyError, FileNotFoundError):
-        pass
+try:
+    api_key = st.secrets["OPENAI_API_KEY"]
+except (KeyError, FileNotFoundError):
+    api_key = None
 
 if not api_key:
     st.error("OpenAI API key is not configured.")

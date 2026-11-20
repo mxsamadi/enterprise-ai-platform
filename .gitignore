@@ -18,3 +18,10 @@ chroma_db/
 
 # Local environment files
 *.log
+
+# Streamlit secrets
+.streamlit/secrets.toml
+
+# Demo usage database
+demo_usage.db
+demo_usage.db-*
