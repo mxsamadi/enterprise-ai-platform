@@ -1,3 +1,23 @@
+## Live Demo
+
+Try the Enterprise AI Document Intelligence Platform
+
+An interactive, cloud-hosted Retrieval-Augmented Generation (RAG) application that answers questions using information retrieved from PDF documents.
+
+Features
+
+PDF text extraction and intelligent chunking
+
+OpenAI embeddings and semantic similarity search
+
+Context-grounded LLM responses with source citations
+
+Password-protected Streamlit interface
+
+Interactive deployment on Streamlit Community Cloud
+
+Demo access code available upon request.
+
 # Enterprise AI Document Intelligence Platform
 
 A Python-based document intelligence application that uses Retrieval-Augmented Generation (RAG) to answer questions about uploaded PDF documents.
