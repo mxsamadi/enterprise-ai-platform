@@ -212,3 +212,32 @@ python profile_rag.py
 ## Project Status
 
 Working local prototype. Enterprise hardening and cloud deployment are planned.
+
+## System Architecture
+
+The platform implements a Retrieval-Augmented Generation (RAG) pipeline to answer questions using information from PDF documents.
+
+### Document Processing
+1. Extract text from PDF documents using `pypdf`.
+2. Split extracted text into sentence-aware chunks.
+3. Generate vector embeddings using OpenAI's `text-embedding-3-small` model.
+
+### Retrieval and Generation
+1. Convert the user's question into a vector embedding.
+2. Retrieve the two most semantically relevant document chunks.
+3. Pass the retrieved context and question to an OpenAI language model.
+4. Generate an answer grounded in the retrieved documents, including source citations.
+
+### Application Components
+
+| Component | Technology |
+|---|---|
+| Backend API | FastAPI |
+| Vector database (full application) | ChromaDB |
+| Semantic retrieval (hosted demo) | NumPy cosine similarity |
+| Embeddings | OpenAI |
+| Answer generation | OpenAI |
+| Web interface | Streamlit |
+| Deployment | Streamlit Community Cloud |
+
+**Deployment architecture:** The hosted recruiter demo is a standalone Streamlit application that uses a bundled sample PDF. The full local application uses FastAPI and persistent ChromaDB storage.
