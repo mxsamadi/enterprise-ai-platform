@@ -241,3 +241,28 @@ The platform implements a Retrieval-Augmented Generation (RAG) pipeline to answe
 | Deployment | Streamlit Community Cloud |
 
 **Deployment architecture:** The hosted recruiter demo is a standalone Streamlit application that uses a bundled sample PDF. The full local application uses FastAPI and persistent ChromaDB storage.
+
+## Model Evaluation and Performance
+
+The RAG pipeline was evaluated using a small set of document-grounded questions and local API latency measurements.
+
+| Metric | Observed Result |
+|---|---|
+| Retrieval Recall@2 | 100% (3/3 test questions) |
+| Average API latency | 2.19 seconds |
+| Maximum observed latency | 2.71 seconds |
+
+### Latency Breakdown
+
+A representative local execution produced:
+
+- Question embedding: 0.267 seconds
+- Vector database retrieval: 0.011 seconds
+- LLM answer generation: 1.438 seconds
+- Total execution time: 1.716 seconds
+
+### Evaluation Limitations
+
+These results are based on a small test dataset and local execution. They demonstrate initial pipeline functionality rather than statistically robust retrieval accuracy, answer quality, or production-scale performance.
+
+Future evaluation could include larger question sets, retrieval Recall@K, citation accuracy, faithfulness, and latency percentiles.
